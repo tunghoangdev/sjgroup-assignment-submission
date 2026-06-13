@@ -1,0 +1,309 @@
+{
+  "info": {
+    "name": "SJ Group Assignment API",
+    "description": "Postman Collection for SJ Group Assignment APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Departments",
+      "item": [
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/departments",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "departments"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Get Full Location Tree",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/locations",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "locations"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Location (Building)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tower A\",\n  \"locationNumber\": \"A-01\",\n  \"building\": \"A\",\n  \"type\": \"building\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/locations",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "locations"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Location (Room)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Meeting Room 1\",\n  \"locationNumber\": \"A-01-01\",\n  \"building\": \"A\",\n  \"type\": \"room\",\n  \"parent\": { \"id\": \"<REPLACE_WITH_PARENT_ID>\" },\n  \"department\": { \"id\": \"<REPLACE_WITH_DEPARTMENT_ID>\" },\n  \"capacity\": 10,\n  \"openTime\": \"Mon to Fri (9AM to 6PM)\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/locations",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "locations"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Location By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/locations/:id",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "locations",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<REPLACE_WITH_ID>"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Location",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacity\": 15\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/locations/:id",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "locations",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<REPLACE_WITH_ID>"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Location",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/locations/:id",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "locations",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<REPLACE_WITH_ID>"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locationId\": \"<REPLACE_WITH_ROOM_ID>\",\n  \"bookedBy\": \"EFM\",\n  \"attendees\": 5,\n  \"startTime\": \"2026-06-10T10:00:00Z\",\n  \"endTime\": \"2026-06-10T11:00:00Z\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/bookings",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "bookings"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/bookings?page=1&limit=10",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "bookings"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Booking By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/bookings/:id",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "bookings",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<REPLACE_WITH_ID>"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/bookings/:id/cancel",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "bookings",
+                ":id",
+                "cancel"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "<REPLACE_WITH_ID>"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:3000/api/v1",
+      "type": "string"
+    }
+  ]
+}
